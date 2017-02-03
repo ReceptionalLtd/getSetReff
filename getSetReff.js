@@ -1,4 +1,5 @@
-function getSetReff()
+<script>
+  function getSetReff()
 {
 
     if (!Array.prototype.filter) //Array.filter() isn't included in IE until version 9.
@@ -53,14 +54,14 @@ function getSetReff()
     var __cmp = "utm_campaign";
     var __mdm = "utm_medium";
     var __srcs = "utm_source";
-
+    var __flag = 0; 
 
     //referrer or params?
     if (document.location.search.indexOf(__cmp) != -1 || document.location.search.indexOf(__mdm) != -1 || document.location.search.indexOf(__srcs) != -1)
     {
         __gsr = "//campaign::c:["+gcP(__cmp)+"]m:["+gcP(__mdm)+"]s:["+gcP(__srcs)+"]";
     }
-    else { __gsr = document.referrer; }
+    else { __gsr = document.referrer; flag=1; }
     //console.log(__gsr);
     //get referrer domain & verify adwords
     __gsr = ((document.location.search.indexOf("gclid") != -1) ? "//campaign::[adwords]" : __gsr); 
@@ -106,6 +107,18 @@ function getSetReff()
         {
             sC("__reff",__apc+"|"+__gsr+"&"+__asc,730);
         } 
-    }
+    } 
+    document.getElementById("00N0Y00000ABxTe").value = gcP(__mdm); /* Campaign_Medium */
+	document.getElementById("00N0Y00000ABxTo").value =gcP(__cmp); /* Campaign_CampaignName */ 
+    if (__gsr == "(direct)")
+    document.getElementById("00N0Y00000ABxTj").value = __gsr; /* Campaign_Source */ 
+    else 
+    document.getElementById("00N0Y00000ABxTj").value =gcP(__srcs); /* Campaign_Source */ 
+    
+  
+  
     return rC("__reff");
 }
+
+getSetReff();
+  </script>

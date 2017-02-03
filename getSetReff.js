@@ -110,10 +110,21 @@
     } 
     document.getElementById("00N0Y00000ABxTe").value = gcP(__mdm); /* Campaign_Medium */
 	document.getElementById("00N0Y00000ABxTo").value =gcP(__cmp); /* Campaign_CampaignName */ 
-    if (__gsr == "(direct)")
-    document.getElementById("00N0Y00000ABxTj").value = __gsr; /* Campaign_Source */ 
-    else 
-    document.getElementById("00N0Y00000ABxTj").value =gcP(__srcs); /* Campaign_Source */ 
+    if (__gsr == "(direct)"){
+      console.log(" IF "+__gsr);
+    document.getElementById("00N0Y00000ABxTj").value = __gsr; /* Campaign_Source */ }
+else if (__gsr == "" || gcP(__srcs) == "not-set")
+{
+    console.log("Else IF "+__gsr);
+  document.getElementById("00N0Y00000ABxTj").value = document.referrer; /* Campaign_Source */ 
+}       
+  
+else {
+  console.log("Else "+gcP(__srcs));
+    console.log(document.referrer);
+      document.getElementById("00N0Y00000ABxTj").value =gcP(__srcs); /* Campaign_Source */ 
+    
+    }
     
   
   
